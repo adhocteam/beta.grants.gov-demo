@@ -6,6 +6,9 @@
 
 {% block content %}
 <section class="usa-prose">
+  {% if query %}
+    <a href="{% url 'search' %}?q={{ query }}">← Back to search results</a>
+  {% endif %}
   <h1>{{ opportunity.title }}</h1>
   <h2>{{ opportunity.agency_name }}</h2>
   <div
@@ -23,16 +26,21 @@
             If you are under a winter storm warning,
             <a class="usa-summary-box__link" href="">find shelter</a> right away.
           </li>-->
+          <li>Status: {% if opportunity.is_open %}Open{% else %}Closed{% endif %}</li>
           <li>Post date: {{ opportunity.post_date }}</li>
           <li>Close date: {{ opportunity.close_date }}</li>
+          {% if opportunity.award_ceiling %}
           <li>Award ceiling: {{ opportunity.award_ceiling|currency }}</li>
+          {% endif %}
+          {% if opportunity.award_floor %}
           <li>Award floor: {{ opportunity.award_floor|currency }}</li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </div>
 
-  <p>{{ opportunity.description }}</p>
+  <p>{{ opportunity.description|urlize }}</p>
 
   <button class="usa-button">Apply</button>
 </section>

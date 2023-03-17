@@ -1,7 +1,9 @@
 from django.db import models
 
+from datetime import date
+
 class Opportunity(models.Model):
-    grant_id = models.CharField(max_length=20, blank=True, null=True)
+    grant_id = models.CharField(max_length=20, unique=True, db_index=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     external_id = models.CharField(max_length=40, blank=True, null=True) # XML: OpportunityNumber
     category = models.CharField(max_length=20, blank=True, null=True)
@@ -18,9 +20,9 @@ class Opportunity(models.Model):
     close_date = models.DateField(blank=True, null=True)
     close_date_explanation = models.TextField(blank=True, null=True)
     last_updated_date = models.DateField(blank=True, null=True)
-    award_ceiling = models.IntegerField(blank=True, null=True)
-    award_floor = models.IntegerField(blank=True, null=True)
-    est_total_funding = models.IntegerField(blank=True, null=True)
+    award_ceiling = models.BigIntegerField(blank=True, null=True)
+    award_floor = models.BigIntegerField(blank=True, null=True)
+    est_total_funding = models.BigIntegerField(blank=True, null=True)
     exp_num_awards = models.IntegerField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     version = models.CharField(max_length=20, blank=True, null=True)
@@ -34,3 +36,8 @@ class Opportunity(models.Model):
 
     def __repr__(self):
         return self.title
+
+    def is_open(self):
+        if self.post_date <= date.today() and self.close_date >= date.today():
+            return True
+        return False

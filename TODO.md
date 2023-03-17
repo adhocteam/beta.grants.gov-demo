@@ -1,1 +1,11 @@
-- [ ] Unescape &amp; et al in original when importing
+- [x] Unescape &amp; et al in original when importing
+- [x] Use stable grant ID for permalinks
+    - [x] Add index to grant ID column
+- [ ] Add htmx
+- [ ] Track/follow forecasts
+- [ ] Subscribe to updates/notifications (click "Follow")
+- [ ] Related opps in details view
+- [ ] Faceted search
+- [x] Search defaults to only open or forecasted opps
+- [ ] Simple homepage
+- [x] Back to SERP link from details

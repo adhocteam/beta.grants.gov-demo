@@ -36,9 +36,10 @@
 		{% if result.agency_name %}
 			<h4>{{ result.agency_name }}</h4>
 		{% endif %}
+        <span class="usa-tag">{% if result.is_open %}Open{% else %}Closed{% endif %}</span>
       </div>
       <div class="usa-card__footer">
-          <a href="{% url 'details' result.id %}" class="usa-button">View details</a>
+          <a href="{% url 'details' result.grant_id %}?q={{ request.GET.q | urlencode }}" class="usa-button">View details</a>
       </div>
     </div>
   </li>

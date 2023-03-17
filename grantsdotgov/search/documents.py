@@ -12,7 +12,11 @@ class OpportunityDocument(Document):
         fields = [
             'title',
             'description',
-            'agency_name'
+            'agency_name',
+            'post_date',
+            'close_date',
+            'award_ceiling',
+            'award_floor',
         ]
 
     class Index:

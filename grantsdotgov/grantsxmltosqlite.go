@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"html"
 	"io"
 	"io/ioutil"
 	"log"
@@ -125,6 +126,18 @@ func fixTypes(grants *Grants) {
 	}
 }
 
+func fixEscaping(grants *Grants) {
+	for i := range grants.OpportunitySynopsisDetail {
+		opp := &grants.OpportunitySynopsisDetail[i]
+		opp.Description = html.UnescapeString(opp.Description)
+	}
+
+	for i := range grants.OpportunityForecastDetail {
+		opp := &grants.OpportunityForecastDetail[i]
+		opp.Description = html.UnescapeString(opp.Description)
+	}
+}
+
 func main() {
 	var xmlFile io.Reader
 	if len(os.Args) == 1 {
@@ -152,6 +165,7 @@ func main() {
 	}
 
 	fixTypes(&grants)
+	fixEscaping(&grants)
 
 	jsonData, err := json.MarshalIndent(grants, "", "    ")
 	if err != nil {
