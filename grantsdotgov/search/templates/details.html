@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load currency %}
+
+{% block title %}Grants.gov &middot; {{ opportunity.title }}{% endblock %}
+
+{% block content %}
+<section class="usa-prose">
+  <h1>{{ opportunity.title }}</h1>
+  <h2>{{ opportunity.agency_name }}</h2>
+  <div
+    class="usa-summary-box"
+    role="region"
+    aria-labelledby="summary-box-key-information"
+  >
+    <div class="usa-summary-box__body">
+      <h3 class="usa-summary-box__heading" id="summary-box-key-information">
+        Key information
+      </h3>
+      <div class="usa-summary-box__text">
+        <ul class="usa-list">
+          <!--<li>
+            If you are under a winter storm warning,
+            <a class="usa-summary-box__link" href="">find shelter</a> right away.
+          </li>-->
+          <li>Post date: {{ opportunity.post_date }}</li>
+          <li>Close date: {{ opportunity.close_date }}</li>
+          <li>Award ceiling: {{ opportunity.award_ceiling|currency }}</li>
+          <li>Award floor: {{ opportunity.award_floor|currency }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p>{{ opportunity.description }}</p>
+
+  <button class="usa-button">Apply</button>
+</section>
+{% endblock %}

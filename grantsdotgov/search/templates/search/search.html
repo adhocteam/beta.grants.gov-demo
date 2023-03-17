@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Grants.gov: search {{ request.GET.q }}{% endblock %}
+
+{% block content %}
+<h2>Search results</h2>
+<form method="get" action="{% url 'search' %}" class="usa-search usa-search--big margin-bottom-6" role="search">
+    <label class="usa-sr-only" for="search-field-en-big">Search</label>
+    <input
+        type="search"
+        class="usa-input"
+        id="search-field-en-big"
+        name="q"
+        value="{{ request.GET.q }}"
+        placeholder="Search ...">
+    <button class="usa-button" type="submit">
+        <span class="usa-search__submit-text">Search </span
+        ><img
+            src="{% static 'img/usa-icons-bg/search--white.svg' %}"
+            class="usa-search__submit-icon"
+            alt="Search">
+    </button>
+</form>
+
+<ul class="usa-card-group">
+{% for result in results %}
+  <li class="usa-card tablet:grid-col-4">
+    <div class="usa-card__container">
+      <div class="usa-card__header">
+        <h2 class="usa-card__heading">{{ result.title }}</h2>
+      </div>
+      <div class="usa-card__body">
+        <p>{{ result.description|truncatewords:20 }}</p>
+		{% if result.agency_name %}
+			<h4>{{ result.agency_name }}</h4>
+		{% endif %}
+      </div>
+      <div class="usa-card__footer">
+          <a href="{% url 'details' result.id %}" class="usa-button">View details</a>
+      </div>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

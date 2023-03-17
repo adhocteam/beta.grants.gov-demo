@@ -1,0 +1,1 @@
+- Calculate embeddings to show related opportunities or implement semantic search https://til.simonwillison.net/python/gtr-t5-large https://simonwillison.net/2023/Jan/13/semantic-search-answers/
