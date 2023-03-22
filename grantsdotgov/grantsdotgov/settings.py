@@ -27,7 +27,10 @@ SECRET_KEY = 'django-insecure-+j$b085hc)4wzn3^jnzww=pn6k3)+z1*hjf&f_%24m5_)+6i9u
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '.ngrok.io'
+    '127.0.0.1',
+    'localhost',
+    '.ngrok.io',
+    '.ngrok.app',
 ]
 
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'elasticsearch_dsl',
     'django_elasticsearch_dsl',
     'search',
+    'homepage',
 ]
 
 ELASTICSEARCH_DSL = {

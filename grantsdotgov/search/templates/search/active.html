@@ -1,0 +1,30 @@
+<h2>Opportunities</h2>
+
+{% if opportunities %}
+<table class="usa-table usa-table--borderless font-body-2xs">
+  <tbody>
+	{% for opp in opportunities %}
+    <tr>
+      <th scope="row">
+		<a href="{% url 'details' opp.grant_id %}" class="usa-link">
+			<b>{{ opp.title }}</b>
+		</a>
+	  </th>
+      <td>
+		{{ opp.description|truncatewords:20 }}
+      </td>
+      <td><span class="usa-tag bg-accent-cool-darker">Open</span></td>
+    </tr>
+	{% endfor %}
+  </tbody>
+</table>
+<p>
+	<a href="{% url 'search' %}?q={{ query }}" class="usa-link">
+		See all results
+	</a>
+</p>
+{% else %}
+<p>
+	We couldn't find any results. Please change or broaden your search.
+</p>
+{% endif %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="usa-hero" aria-label="Introduction" style="background-image: url({% static 'img/subway-nyc.webp' %}">
+  <div class="grid-container">
+	<div class="usa-hero__callout">
+	  <h1 class="usa-hero__heading">
+		<span class="usa-hero__heading--alt">Grants.gov:</span>Convenience
+			Comes to Federal Grants
+	  </h1>
+	  <p>
+		Fund your ideas and projects to provide public services and stimulate the economy
+	  </p>
+	  <a class="usa-button" href="">Call to action</a>
+	</div>
+  </div>
+</section>
+
+   <form method="get" action="{% url 'search' %}" class="usa-search usa-search--big margin-top-3 margin-bottom-3" role="search">
+    <label class="usa-sr-only" for="search-field-en-big">search</label>
+    <input
+        type="search"
+        class="usa-input"
+        id="search-field-en-big"
+        name="q"
+        value="{{ request.get.q }}"
+        placeholder="search 71,239 opportunities"
+        hx-get="/search/"
+        hx-trigger="keyup changed delay:500ms, search"
+        hx-target="#search-results"
+        >
+    <button class="usa-button" type="submit">
+        <span class="usa-search__submit-text">search </span
+        ><img
+            src="{% static 'img/usa-icons-bg/search--white.svg' %}"
+            class="usa-search__submit-icon"
+            alt="search">
+    </button>
+   </form>
+
+  <div id="search-results"></div>
+{% endblock %}

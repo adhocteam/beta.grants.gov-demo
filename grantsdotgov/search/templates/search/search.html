@@ -14,7 +14,7 @@
         id="search-field-en-big"
         name="q"
         value="{{ request.GET.q }}"
-        placeholder="Search ...">
+        placeholder="Search 71,239 opportunities">
     <button class="usa-button" type="submit">
         <span class="usa-search__submit-text">Search </span
         ><img
@@ -24,26 +24,60 @@
     </button>
 </form>
 
+<h3>Open opportunities</h3>
 <ul class="usa-card-group">
-{% for result in results %}
+{% for opp in open_opps %}
   <li class="usa-card tablet:grid-col-4">
     <div class="usa-card__container">
       <div class="usa-card__header">
-        <h2 class="usa-card__heading">{{ result.title }}</h2>
+        <p>
+            <span class="usa-tag bg-accent-cool-dark">
+                Open
+            </span>
+        </p>
+        <h2 class="usa-card__heading">{{ opp.title }}</h2>
       </div>
       <div class="usa-card__body">
-        <p>{{ result.description|truncatewords:20 }}</p>
-		{% if result.agency_name %}
-			<h4>{{ result.agency_name }}</h4>
+		{% if opp.agency_name %}
+            <h4><span class="text-normal">Agency:</span> {{ opp.agency_name }}</h4>
 		{% endif %}
-        <span class="usa-tag">{% if result.is_open %}Open{% else %}Closed{% endif %}</span>
+        <p>{{ opp.description|truncatewords:20 }}</p>
       </div>
-      <div class="usa-card__footer">
-          <a href="{% url 'details' result.grant_id %}?q={{ request.GET.q | urlencode }}" class="usa-button">View details</a>
+      <div class="usa-card__footer" hx-boost="true">
+          <a href="{% url 'details' opp.grant_id %}?q={{ request.GET.q | urlencode }}" class="usa-button">View details</a>
       </div>
     </div>
   </li>
 {% endfor %}
 </ul>
 
+<h3>Closed opportunities</h3>
+<ul class="usa-card-group">
+{% for opp in closed_opps %}
+  <li class="usa-card tablet:grid-col-4">
+    <div class="usa-card__container">
+      <div class="usa-card__header">
+        <p>
+            <span class="usa-tag bg-accent-warm-dark">
+                Closed
+            </span>
+        </p>
+        <h2 class="usa-card__heading">
+            {{ opp.title }}
+        </h2>
+      </div>
+      <div class="usa-card__body">
+		{% if opp.agency_name %}
+            <h4><span class="text-normal">Agency:</span> {{ opp.agency_name }}</h4>
+		{% endif %}
+        <p>{{ opp.description|truncatewords:20 }}</p>
+        </span>
+      </div>
+      <div class="usa-card__footer" hx-boost="true">
+          <a href="{% url 'details' opp.grant_id %}?q={{ request.GET.q | urlencode }}" class="usa-button">View details</a>
+      </div>
+    </div>
+  </li>
+{% endfor %}
+</ul>
 {% endblock %}

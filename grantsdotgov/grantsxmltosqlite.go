@@ -129,11 +129,13 @@ func fixTypes(grants *Grants) {
 func fixEscaping(grants *Grants) {
 	for i := range grants.OpportunitySynopsisDetail {
 		opp := &grants.OpportunitySynopsisDetail[i]
+		opp.OpportunityTitle = html.UnescapeString(opp.OpportunityTitle)
 		opp.Description = html.UnescapeString(opp.Description)
 	}
 
 	for i := range grants.OpportunityForecastDetail {
 		opp := &grants.OpportunityForecastDetail[i]
+		opp.OpportunityTitle = html.UnescapeString(opp.OpportunityTitle)
 		opp.Description = html.UnescapeString(opp.Description)
 	}
 }
