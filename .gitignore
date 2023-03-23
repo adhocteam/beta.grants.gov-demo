@@ -3,3 +3,4 @@
 node_modules
 *.pyc
 *.sqlite3
+env/

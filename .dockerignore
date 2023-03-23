@@ -1,0 +1,4 @@
+*.pyc
+Dockerfile
+node_modules
+env
