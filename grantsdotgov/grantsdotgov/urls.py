@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('', include('search.urls')),
+    path('healthz/', include('health_check.urls')),
 ]

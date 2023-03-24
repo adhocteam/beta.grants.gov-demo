@@ -48,6 +48,9 @@ INSTALLED_APPS = [
 
     'elasticsearch_dsl',
     'django_elasticsearch_dsl',
+    'health_check',
+    'health_check.db',
+
     'search',
     'homepage',
 ]

@@ -1,0 +1,14 @@
+.git
+.gitignore
+.envrc
+.direnv
+.gcloudignore
+.dockerignore
+.DS_Store
+*.pyc
+/node_modules/
+/env/
+!grantsdotgov/db.sqlite3
+tmp/
+run
+.ngrok

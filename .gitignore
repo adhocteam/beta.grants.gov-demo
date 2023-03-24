@@ -5,3 +5,4 @@ node_modules
 *.sqlite3
 env/
 production_settings.py
+.DS_Store

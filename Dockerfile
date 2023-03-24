@@ -10,7 +10,8 @@ WORKDIR /app
 RUN npm install
 RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /app/grantsdotgov
-ENV DJANGO_SETTINGS_MODULE grantsdotgov.production_settings
+ENV DJANGO_SETTINGS_MODULE=grantsdotgov.production_settings
+ENV PYTHONUNBUFFERED=1
 RUN python manage.py collectstatic
 RUN chown -R www-data:www-data /app
 
